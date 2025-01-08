@@ -1,0 +1,38 @@
+footer {
+  .footer_content {
+    .footer_group {
+      .footer_item {
+        h5 {
+        }
+        ul {
+          li {
+            margin-top: 12px;
+            a {
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+    .footer_bottom {
+      border-top: 1px #e5e7eb solid;
+      .bottom_left {
+        ul {
+          li {
+            display: inline-block;
+            a {
+              margin-right: 20px;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+      .bottom_right {
+      }
+    }
+  }
+}
