@@ -9,6 +9,8 @@ import React, { createContext, Suspense } from "react";
 
 import HomePage from "./pages/HomeTeamplate/HomePage";
 import Detail from "./pages/HomeTeamplate/components/Detail/Detail";
+import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
+import ManagerUser from "./pages/AdminTemplate/ManageUser/ManageUser";
 
 export const NotificationContext = createContext();
 
@@ -42,6 +44,44 @@ const arrRoutes = [
   {
     path: pathDefault.signIn,
     element: <SignIn />,
+  },
+  {
+    path: pathDefault.admin,
+    element: <AdminTemplate />,
+    children: [
+      {
+        index: true,
+        element: (
+          <Suspense fallback={<div>Loading ...</div>}>
+            <ManagerUser />
+          </Suspense>
+        ),
+      },
+      {
+        path: "manager-user",
+        element: (
+          <Suspense fallback={<div>Loading ...</div>}>
+            <ManagerUser />
+          </Suspense>
+        ),
+      },
+      // {
+      //   path: "manager-job",
+      //   element: (
+      //     <Suspense fallback={<div>Loading ...</div>}>
+      //       <ManagerJob />
+      //     </Suspense>
+      //   ),
+      // },
+      // {
+      //   path: "manager-comment",
+      //   element: (
+      //     <Suspense fallback={<div>Loading ...</div>}>
+      //       <ManagerComment />
+      //     </Suspense>
+      //   ),
+      // },
+    ],
   },
 ];
 

@@ -22,7 +22,7 @@ const Location = () => {
     return listLocation.map((item, index) => {
       return (
         <div
-          className="w-3/12 flex items-center"
+          className="w-3/12 flex items-center hover:cursor-pointer"
           key={index}
           onClick={() => {
             console.log(index);
