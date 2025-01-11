@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { phongService } from "../../../../services/phong.service";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Detail = () => {
   const { id } = useParams(); // Lấy id từ URL
-  const [detail, setDetail] = useState([[]]);
+  const navigate = useNavigate();
+  const [detail, setDetail] = useState([]);
 
   useEffect(() => {
     phongService
@@ -25,7 +26,13 @@ const Detail = () => {
           key={index}
           className="list_item flex border border-gray-300 rounded-lg mb-5 p-5"
         >
-          <div className="item_left w-8/12">
+          <div
+            className="item_left w-8/12"
+            onClick={() => {
+              console.log(index);
+              navigate(`/detail-room/${item.id}`);
+            }}
+          >
             <div className="item_img ">
               <img src={item.hinhAnh} alt="" className="rounded-lg" />
             </div>

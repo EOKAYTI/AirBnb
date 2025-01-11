@@ -65,7 +65,7 @@ const AdminTemplate = () => {
                   to={pathDefault.managerUser}
                 >
                   <UserOutlined />
-                  <span>Danh sách người dùng</span>
+                  <span>Quản lý người dùng</span>
                 </NavLink>
               ),
             },
@@ -78,10 +78,10 @@ const AdminTemplate = () => {
                       isActive ? "item-active" : ""
                     }`;
                   }}
-                  to={pathDefault.managerJob}
+                  to={pathDefault.managerLocation}
                 >
                   <VideoCameraOutlined />
-                  <span>Danh sách công việc</span>
+                  <span>Quản lý thông tin vị trí</span>
                 </NavLink>
               ),
             },
@@ -98,7 +98,24 @@ const AdminTemplate = () => {
                   to={pathDefault.managerComment}
                 >
                   <UploadOutlined />
-                  <span>Danh sách bình luận</span>
+                  <span>Quản lý thông tin phòng</span>
+                </NavLink>
+              ),
+            },
+            {
+              key: "4",
+
+              label: (
+                <NavLink
+                  className={({ isActive, isPending }) => {
+                    return `px-3 rounded-md inline-block ${
+                      isActive ? "item-active" : ""
+                    }`;
+                  }}
+                  to={pathDefault.managerComment}
+                >
+                  <UploadOutlined />
+                  <span>Quản lý đặt phòng</span>
                 </NavLink>
               ),
             },

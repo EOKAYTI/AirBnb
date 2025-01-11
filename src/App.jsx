@@ -11,6 +11,8 @@ import HomePage from "./pages/HomeTeamplate/HomePage";
 import Detail from "./pages/HomeTeamplate/components/Detail/Detail";
 import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import ManagerUser from "./pages/AdminTemplate/ManageUser/ManageUser";
+import DetailRoom from "./pages/HomeTeamplate/components/DetailRoom/DetailRoom";
+import ManageLocation from "./pages/AdminTemplate/ManageLocation/ManageLocation";
 
 export const NotificationContext = createContext();
 
@@ -34,6 +36,10 @@ const arrRoutes = [
       {
         path: "detail/:id",
         element: <Detail />,
+      },
+      {
+        path: "detail-room/:id",
+        element: <DetailRoom />,
       },
     ],
   },
@@ -62,6 +68,14 @@ const arrRoutes = [
         element: (
           <Suspense fallback={<div>Loading ...</div>}>
             <ManagerUser />
+          </Suspense>
+        ),
+      },
+      {
+        path: "manager-location",
+        element: (
+          <Suspense fallback={<div>Loading ...</div>}>
+            <ManageLocation />
           </Suspense>
         ),
       },
