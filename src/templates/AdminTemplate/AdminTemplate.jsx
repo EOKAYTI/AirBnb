@@ -87,7 +87,6 @@ const AdminTemplate = () => {
             },
             {
               key: "3",
-
               label: (
                 <NavLink
                   className={({ isActive, isPending }) => {
@@ -95,7 +94,7 @@ const AdminTemplate = () => {
                       isActive ? "item-active" : ""
                     }`;
                   }}
-                  to={pathDefault.managerComment}
+                  to={pathDefault.managerRoom}
                 >
                   <UploadOutlined />
                   <span>Quản lý thông tin phòng</span>
@@ -112,7 +111,7 @@ const AdminTemplate = () => {
                       isActive ? "item-active" : ""
                     }`;
                   }}
-                  to={pathDefault.managerComment}
+                  to={pathDefault.managerBooking}
                 >
                   <UploadOutlined />
                   <span>Quản lý đặt phòng</span>

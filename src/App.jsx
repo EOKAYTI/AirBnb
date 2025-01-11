@@ -13,6 +13,8 @@ import AdminTemplate from "./templates/AdminTemplate/AdminTemplate";
 import ManagerUser from "./pages/AdminTemplate/ManageUser/ManageUser";
 import DetailRoom from "./pages/HomeTeamplate/components/DetailRoom/DetailRoom";
 import ManageLocation from "./pages/AdminTemplate/ManageLocation/ManageLocation";
+import ManageRoom from "./pages/AdminTemplate/ManageRoom/ManageRoom";
+import ManageBooking from "./pages/AdminTemplate/MangeBooking/ManageBooking";
 
 export const NotificationContext = createContext();
 
@@ -79,22 +81,22 @@ const arrRoutes = [
           </Suspense>
         ),
       },
-      // {
-      //   path: "manager-job",
-      //   element: (
-      //     <Suspense fallback={<div>Loading ...</div>}>
-      //       <ManagerJob />
-      //     </Suspense>
-      //   ),
-      // },
-      // {
-      //   path: "manager-comment",
-      //   element: (
-      //     <Suspense fallback={<div>Loading ...</div>}>
-      //       <ManagerComment />
-      //     </Suspense>
-      //   ),
-      // },
+      {
+        path: "manager-room",
+        element: (
+          <Suspense fallback={<div>Loading ...</div>}>
+            <ManageRoom />
+          </Suspense>
+        ),
+      },
+      {
+        path: "manager-booking",
+        element: (
+          <Suspense fallback={<div>Loading ...</div>}>
+            <ManageBooking />
+          </Suspense>
+        ),
+      },
     ],
   },
 ];
