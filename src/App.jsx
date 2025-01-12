@@ -33,29 +33,53 @@ const arrRoutes = [
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: (
+          <Suspense fallback={<div>Loading ...</div>}>
+            <HomePage />
+          </Suspense>
+        ),
       },
       {
         path: "detail/:id",
-        element: <Detail />,
+        element: (
+          <Suspense fallback={<div>Loading ...</div>}>
+            <Detail />
+          </Suspense>
+        ),
       },
       {
         path: "detail-room/:id",
-        element: <DetailRoom />,
+        element: (
+          <Suspense fallback={<div>Loading ...</div>}>
+            <DetailRoom />
+          </Suspense>
+        ),
       },
     ],
   },
   {
     path: pathDefault.signUp,
-    element: <SignUp />,
+    element: (
+      <Suspense fallback={<div>Loading ...</div>}>
+        <SignUp />
+      </Suspense>
+    ),
   },
   {
     path: pathDefault.signIn,
-    element: <SignIn />,
+    element: (
+      <Suspense fallback={<div>Loading ...</div>}>
+        <SignIn />
+      </Suspense>
+    ),
   },
   {
     path: pathDefault.admin,
-    element: <AdminTemplate />,
+    element: (
+      <Suspense fallback={<div>Loading ...</div>}>
+        <AdminTemplate />
+      </Suspense>
+    ),
     children: [
       {
         index: true,

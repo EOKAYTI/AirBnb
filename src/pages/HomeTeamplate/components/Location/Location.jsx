@@ -29,7 +29,7 @@ const Location = () => {
             navigate(`/detail/${item.id}`);
           }}
         >
-          <img className="w-14 h-14 rounded-lg" src={item.hinhAnh} alt="" />
+          <img className="w-20 h-20 rounded-lg" src={item.hinhAnh} alt="" />
           <div className="infor ms-2">
             <h5 className="inline-block font-semibold">{item.tenViTri}</h5>
             <p className="">{item.tinhThanh}</p>
@@ -40,7 +40,7 @@ const Location = () => {
   });
 
   return (
-    <section className="location">
+    <section className="location mb-5">
       <div className="container">
         <h2 className="text-3xl font-bold my-5">
           Khám phá những điểm đến gần đây

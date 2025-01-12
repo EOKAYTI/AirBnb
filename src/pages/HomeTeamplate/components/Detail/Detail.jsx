@@ -24,38 +24,27 @@ const Detail = () => {
       return (
         <div
           key={index}
-          className="list_item flex border border-gray-300 rounded-lg mb-5 p-5"
+          className="item_item rounded-lg mb-5 cursor-pointer space-y-3"
+          onClick={() => {
+            console.log(index);
+            navigate(`/detail-room/${item.id}`);
+          }}
         >
-          <div
-            className="item_left w-8/12"
-            onClick={() => {
-              console.log(index);
-              navigate(`/detail-room/${item.id}`);
-            }}
-          >
-            <div className="item_img ">
-              <img src={item.hinhAnh} alt="" className="rounded-lg" />
-            </div>
-            <div className="item_info">
-              <h2 className="font-semibold text-2xl">{item.tenPhong}</h2>
-              <p>{item.moTa}</p>
-              <p className="text-red-500">đ{item.giaTien}</p>
-            </div>
+          <div className="item_img h-40">
+            <img
+              src={item.hinhAnh}
+              alt="hinhAnh"
+              className="object-cover rounded-lg w-full h-full"
+            />
           </div>
-          <div
-            className="item_right w-4/12"
-            style={{ height: "300px", width: "50%" }}
-          >
-            <iframe
-              title="Google Map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.451998241504!2d106.65843041533436!3d10.762622092327857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ecd5b549e01%3A0x3e4b2674324d6a7c!2zVGjhu4sgxJDhu5NuZyBWaeG7h3QgdHLhu41pIFRo4buNIFRo4bunIMSQ4buB!5e0!3m2!1sen!2s!4v1697044251932!5m2!1sen!2s"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div className="item_info">
+            <h2 className="font-semibold text-lg">{item.tenPhong}</h2>
+            <p className="text-gray-500 truncate">{item.moTa}</p>
+            <p className="font-semibold">
+              <span className="underline underline-offset-1">đ</span>
+              {item.giaTien}
+              <span className="text-gray-500"> /đêm</span>
+            </p>
           </div>
         </div>
       );
@@ -65,10 +54,12 @@ const Detail = () => {
   return (
     <section className="detail">
       <div className="container">
-        <h1 className="text-4xl font-semibold">
+        <h1 className="text-4xl font-semibold my-4">
           Chỗ ở tại khu vực bản đồ đã chọn
         </h1>
-        {itemListDetail}
+        <div className="detail_list grid grid-cols-4 gap-6 my-2">
+          {itemListDetail}
+        </div>
       </div>
     </section>
   );
