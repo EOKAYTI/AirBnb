@@ -7,7 +7,9 @@ const HomeTemplate = () => {
   return (
     <div>
       <Header />
+
       <Outlet />
+
       <Footer />
     </div>
   );

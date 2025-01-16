@@ -1,10 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { phongService } from "../../../../services/phong.service";
+import { binhLuanService } from "../../../../services/binhLuan.service";
 
 const DetailRoom = () => {
   const { id } = useParams(); // Lấy id từ URL
   const [detailRoom, setDetailRoom] = useState([]);
+  const [detailBinhLuan, setDetailBinhLuan] = useState([]);
 
   useEffect(() => {
     phongService
@@ -18,8 +20,43 @@ const DetailRoom = () => {
       });
   }, []);
 
+  useEffect(() => {
+    binhLuanService
+      .getBinhLuanTheoId(id)
+      .then((res) => {
+        console.log(res.data.content);
+        setDetailBinhLuan(res.data.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const itemListBinhLuan = useMemo(() => {
+    return detailBinhLuan.map((item, index) => {
+      return (
+        <div className="binhLuan_item border border-gray-300 rounded-lg p-3">
+          <div className="item_info flex items-center gap-3">
+            <div className="info_img">
+              <img
+                src={item.avatar}
+                alt="avatar"
+                className="w-10 h-10 rounded-full"
+              />
+            </div>
+            <div className="info_user">
+              <p className="font-semibold">{item.tenNguoiBinhLuan}</p>
+              <p className="text-gray-700">{item.ngayBinhLuan}</p>
+            </div>
+          </div>
+          <p>{item.noiDung}</p>
+        </div>
+      );
+    });
+  });
+
   return (
-    <section className="detailRoom">
+    <section className="detailRoom pb-10">
       <div className="container">
         <div className="detail_group">
           <div className="group_info">
@@ -258,6 +295,12 @@ const DetailRoom = () => {
             </div>
             <div className="moTa_right col-span-4">
               Giá tiền: {detailRoom.giaTien}
+            </div>
+          </div>
+          <div className="group_binhLuan">
+            <h2 className="text-2xl font-semibold my-3">Bình luận</h2>
+            <div className="binhLuan_group grid grid-cols-2 gap-5">
+              {itemListBinhLuan}
             </div>
           </div>
         </div>
