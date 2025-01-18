@@ -40,7 +40,7 @@ const Location = () => {
   });
 
   return (
-    <section className="location mb-5">
+    <section className="location mb-5 mt-[120px]">
       <div className="container">
         <h2 className="text-3xl font-bold my-5">
           Khám phá những điểm đến gần đây

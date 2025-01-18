@@ -2,11 +2,16 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { phongService } from "../../../../services/phong.service";
 import { binhLuanService } from "../../../../services/binhLuan.service";
+import { Button, DatePicker, Input } from "antd";
 
 const DetailRoom = () => {
   const { id } = useParams(); // Lấy id từ URL
   const [detailRoom, setDetailRoom] = useState([]);
   const [detailBinhLuan, setDetailBinhLuan] = useState([]);
+
+  const onChange = (date, dateString) => {
+    console.log(date, dateString);
+  };
 
   useEffect(() => {
     phongService
@@ -56,7 +61,7 @@ const DetailRoom = () => {
   });
 
   return (
-    <section className="detailRoom pb-10">
+    <section className="detailRoom pb-10 mt-[120px]">
       <div className="container">
         <div className="detail_group">
           <div className="group_info">
@@ -293,8 +298,45 @@ const DetailRoom = () => {
                 </ul>
               </div>
             </div>
-            <div className="moTa_right col-span-4">
-              Giá tiền: {detailRoom.giaTien}
+            <div className="moTa_right col-span-4 border border-gray-300 rounded-lg p-4">
+              <div className="right_price  flex justify-between">
+                <div className="price">${detailRoom.giaTien}/đêm</div>
+                <div className="danhGia">18 đánh giá</div>
+              </div>
+              <div className="price_date ">
+                <div className="check flex">
+                  <div className="checkIn">
+                    <label htmlFor="">NHẬN PHÒNG</label>
+                    <DatePicker onChange={onChange} />
+                  </div>
+                  <div className="checkOut">
+                    <label htmlFor="">TRẢ PHÒNG</label>
+                    <DatePicker onChange={onChange} />
+                  </div>
+                </div>
+                <div className="quantity">
+                  <label htmlFor="">KHÁCH</label>
+                  <Input />
+                </div>
+                <Button className="w-full bg-[#FF385C] text-white py-1 px-2">
+                  Đặt phòng
+                </Button>
+                <span>Bạn vẫn chưa bị trừ tiền</span>
+                <div className="bill">
+                  <div className="bill_room flex justify-between">
+                    <p>${detailRoom.giaTien} x 5 đêm</p>
+                    <p>$221</p>
+                  </div>
+                  <div className="bill_service flex justify-between">
+                    <p>Phí dịch vụ</p>
+                    <p>$31</p>
+                  </div>
+                  <div className="bill_total flex justify-between">
+                    <p>Tổng</p>
+                    <p>$252</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="group_binhLuan">

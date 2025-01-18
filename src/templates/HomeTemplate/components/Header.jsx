@@ -1,12 +1,16 @@
-import React from "react";
-import { Button, Dropdown, Space } from "antd";
-import { Input } from "antd";
+import { Button, DatePicker, Dropdown, Input, Space } from "antd";
+import React, { useEffect, useState } from "react";
 
-import "./Header.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { pathDefault } from "../../../common/path";
+import "./Header.scss";
+import { viTriService } from "../../../services/viTri.service";
+
 const Header = () => {
   const navigate = useNavigate();
+  const [listLocation, setListLocation] = useState([]);
+  const { RangePicker } = DatePicker;
+
   const items = [
     {
       key: "1",
@@ -31,8 +35,24 @@ const Header = () => {
       ),
     },
   ];
+  const handleSearch = (userInput) => {
+    console.log(userInput);
+  };
+
+  useEffect(() => {
+    viTriService
+      .getViTri()
+      .then((res) => {
+        console.log(res.data.content);
+        handleSearch;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
-    <header className="py-4 border border-b-gray-200">
+    <header className="py-4 border border-b-gray-200 fixed top-0 left-0 right-0 bg-white">
       <div className="container">
         <div className="header_content flex justify-between items-center">
           <div className="header_logo">
@@ -53,7 +73,7 @@ const Header = () => {
               </svg>
             </Link>
           </div>
-          <div className="header_bar flex justify-between items-center border border-gray-200 rounded-full py-1 px-6">
+          <div className="header_bar flex justify-between items-center gap-5 border border-gray-200 rounded-full py-1 px-6">
             <div className="bar_place">
               <label className="block" htmlFor="">
                 Địa điểm
@@ -61,24 +81,22 @@ const Header = () => {
               <Input
                 placeholder="Tìm kiếm điểm đến"
                 className="border-none p-0 focus:outline-none focus:ring-0 border-gray-300"
+                onChange={(e) => {
+                  const userInput = e.target.value;
+                  handleSearch(userInput);
+                }}
               />
             </div>
-            <div className="bar_checkIn">
-              <label className="block" htmlFor="">
-                Nhận phòng
-              </label>
-              <Input
-                placeholder="Ngày nhận"
-                className="border-none p-0 focus:outline-none focus:ring-0 border-gray-300"
-              />
-            </div>
-            <div className="bar_checkOut">
-              <label className="block" htmlFor="">
-                Trả phòng
-              </label>
-              <Input
-                placeholder="Ngày trả"
-                className="border-none p-0 focus:outline-none focus:ring-0 border-gray-300"
+            <div className="bar_checkInOut">
+              <div className="label_InOut flex justify-between">
+                <label className="block" htmlFor="">
+                  Nhận phòng - Trả phòng
+                </label>
+              </div>
+
+              <RangePicker
+                className="p-0 border-none"
+                placeholder={["Nhận phòng", "Trả phòng"]}
               />
             </div>
             <div className="bar_customer flex">
@@ -87,7 +105,7 @@ const Header = () => {
                   Khách
                 </label>
                 <Input
-                  placeholder="0 khách, 0 em bé"
+                  placeholder="0 khách, 0 trẻ em"
                   className="border-none p-0 focus:outline-none focus:ring-0 border-gray-300"
                 />
               </div>

@@ -52,7 +52,7 @@ const Detail = () => {
   });
 
   return (
-    <section className="detail">
+    <section className="detail mt-[120px]">
       <div className="container">
         <div className="detail_content grid grid-cols-12 gap-3">
           <div className="content_left col-span-8">
