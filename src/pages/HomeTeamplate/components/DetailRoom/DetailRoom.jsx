@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { phongService } from "../../../../services/phong.service";
 import { binhLuanService } from "../../../../services/binhLuan.service";
-import { Button, DatePicker, Input } from "antd";
+import { Button, DatePicker, Input, Select } from "antd";
 
 const DetailRoom = () => {
   const { id } = useParams(); // Lấy id từ URL
@@ -61,7 +61,7 @@ const DetailRoom = () => {
   });
 
   return (
-    <section className="detailRoom pb-10 mt-[120px]">
+    <section className="detailRoom py-10 mt-[80px]">
       <div className="container">
         <div className="detail_group">
           <div className="group_info">
@@ -74,7 +74,7 @@ const DetailRoom = () => {
               alt="hinh anh"
             />
           </div>
-          <div className="group_moTa grid grid-cols-12 gap-4">
+          <div className="group_moTa grid grid-cols-12 gap-4 mt-5">
             <div className="moTa_left col-span-8">
               <div className="left_des">
                 <ul>
@@ -298,40 +298,66 @@ const DetailRoom = () => {
                 </ul>
               </div>
             </div>
-            <div className="moTa_right col-span-4 border border-gray-300 rounded-lg p-4">
-              <div className="right_price  flex justify-between">
+            <div className="moTa_right col-span-4 border border-gray-300 rounded-lg p-4 space-y-2 sticky top-0 right-0">
+              <div className="right_price  flex justify-between items-center space-y-2">
                 <div className="price">${detailRoom.giaTien}/đêm</div>
                 <div className="danhGia">18 đánh giá</div>
               </div>
-              <div className="price_date ">
-                <div className="check flex">
-                  <div className="checkIn">
-                    <label htmlFor="">NHẬN PHÒNG</label>
-                    <DatePicker onChange={onChange} />
+              <div className="price_date  space-y-3">
+                <div className="border border-black p-3 rounded-lg">
+                  <div className="check flex justify-between items-center">
+                    <div className="checkIn">
+                      <label htmlFor="">NHẬN PHÒNG</label>
+                      <DatePicker onChange={onChange} placeholder="Ngày nhận" />
+                    </div>
+                    <div className="checkOut">
+                      <label htmlFor="">TRẢ PHÒNG</label>
+                      <DatePicker onChange={onChange} placeholder="Ngày trả" />
+                    </div>
                   </div>
-                  <div className="checkOut">
-                    <label htmlFor="">TRẢ PHÒNG</label>
-                    <DatePicker onChange={onChange} />
+                  <div className="quantity space-y-2">
+                    <label htmlFor="">KHÁCH</label>
+                    <Select
+                      className="w-full"
+                      showSearch
+                      placeholder="Lựa chọn số người"
+                      options={[
+                        {
+                          value: "1",
+                          label: "1",
+                        },
+                        {
+                          value: "2",
+                          label: "2",
+                        },
+                        {
+                          value: "3",
+                          label: "3",
+                        },
+                      ]}
+                    />
                   </div>
                 </div>
-                <div className="quantity">
-                  <label htmlFor="">KHÁCH</label>
-                  <Input />
+
+                <div className="btn_book text-center">
+                  <Button className="w-full bg-[#FF385C] text-white py-1 px-2">
+                    Đặt phòng
+                  </Button>
+                  <span className="inline-block my-2">
+                    Bạn vẫn chưa bị trừ tiền
+                  </span>
                 </div>
-                <Button className="w-full bg-[#FF385C] text-white py-1 px-2">
-                  Đặt phòng
-                </Button>
-                <span>Bạn vẫn chưa bị trừ tiền</span>
-                <div className="bill">
+
+                <div className="bill space-y-2">
                   <div className="bill_room flex justify-between">
-                    <p>${detailRoom.giaTien} x 5 đêm</p>
+                    <p className="underline">${detailRoom.giaTien} x 5 đêm</p>
                     <p>$221</p>
                   </div>
                   <div className="bill_service flex justify-between">
-                    <p>Phí dịch vụ</p>
+                    <p className="underline">Phí dịch vụ</p>
                     <p>$31</p>
                   </div>
-                  <div className="bill_total flex justify-between">
+                  <div className="bill_total flex justify-between border-t border-gray-300 mt-3 py-3 font-semibold">
                     <p>Tổng</p>
                     <p>$252</p>
                   </div>

@@ -52,7 +52,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="py-4 border border-b-gray-200 fixed top-0 left-0 right-0 bg-white">
+    <header className="py-4 border border-b-gray-200 fixed top-0 left-0 right-0 bg-white z-50">
       <div className="container">
         <div className="header_content flex justify-between items-center">
           <div className="header_logo">
